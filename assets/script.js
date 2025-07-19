@@ -15,26 +15,31 @@ window.addEventListener('mousemove', (e) => {
     const moveY = offsetY * (3 + i * 3);
     img.style.transform = `translate(${moveX}px, ${moveY}px)`;
   });
+
+  if (secondPageActive) {
+    const spElements = document.querySelectorAll('#second-page img, #second-page h1, #second-page a');
+    spElements.forEach((el, i) => {
+      const moveX = offsetX * (2 + i * 1.5);
+      const moveY = offsetY * (2 + i * 1.5);
+      el.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+  }
 });
 
 window.addEventListener('mouseout', () => {
   imgs.forEach(img => img.style.transform = 'translate(0, 0)');
+  const spElements = document.querySelectorAll('#second-page img, #second-page h1, #second-page a');
+  spElements.forEach(el => el.style.transform = 'translate(0, 0)');
 });
 
-const enterBtn = document.getElementById('enter-btn');
-const firstPage = document.getElementById('first-page');
-const secondPage = document.getElementById('second-page');
-const introAudio = document.getElementById('intro-audio');
+let secondPageActive = false;
 
-enterBtn.addEventListener('click', () => {
-  firstPage.style.transition = 'opacity 0.8s ease';
-  firstPage.style.opacity = '0';
+document.getElementById('enter-btn').addEventListener('click', () => {
+  const secondPage = document.getElementById('second-page');
+  secondPage.classList.add('active');
+  secondPageActive = true;
 
-  setTimeout(() => {
-    firstPage.style.display = 'none';
-    secondPage.classList.add('active');
-    secondPage.setAttribute('aria-hidden', 'false');
-
-    introAudio.play().catch(() => {});
-  }, 800);
+  const audio = new Audio('assets/intro.wav');
+  audio.loop = true;
+  audio.play();
 });
