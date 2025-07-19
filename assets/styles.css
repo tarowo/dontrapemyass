@@ -78,10 +78,12 @@ img {
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
-  padding: 20px;
+  padding: 40px 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.8s ease;
@@ -96,6 +98,7 @@ img {
   max-width: 90vw;
   max-height: 60vh;
   user-select: none;
+  margin-top: 60px;
 }
 
 #second-page h1 {
@@ -111,7 +114,8 @@ img {
   color: #5865F2;
   text-decoration: none;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 60px;
   cursor: url('cursor.png'), auto !important;
 }
 
